@@ -80,6 +80,12 @@
                 if (i == arr.length - 1) {
                     arr[i] = arr[i] + ".";
                 }
+
+                if (arr[i] == "i") {
+                    arr[i] = arr[i].toUpperCase();
+                } else if (arr[i] == "i'm" || arr[i] == "i've" || arr[i] == "i'll") {
+                    arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1);
+                }
             }
 
             return arr.join(" ");
