@@ -106,7 +106,13 @@
                 }
             }
 
-            return arr.join(" ");
+            let res = arr.join(" ");
+
+            if (res.endsWith("..")) {
+                res = res.slice(0, -1);
+            }
+
+            return res;
         }
 
         function update() {
