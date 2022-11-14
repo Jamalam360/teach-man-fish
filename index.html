@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teach Man Fish</title>
+
+    <style>
+        @import url(https://fonts.bunny.net/css?family=montserrat:600);
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            height: 90vh;
+            width: 90vw;
+            padding-left: 5vw;
+            padding-right: 5vw;
+            padding-top: 5vh;
+            padding-bottom: 5vh;
+
+            background: #60a5fa;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            text-align: center;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #teach-man-fish {
+            padding-bottom: 5vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1 id="teach-man-fish"></h1>
+        <p id="teach-man-author"></p>
+    </div>
+    <script defer>
+        function getTeachManFish(original) {
+            const arr = original.split(" ");
+            const mutArr = original.split(" ");
+            
+            for (let i = 0; i < arr.length; i++) {
+                let randIndex = Math.floor(Math.random() * mutArr.length);
+
+                if (i > 0) {
+                    let attempts = 0;
+
+                    while (arr[i - 1].toLowerCase() == mutArr[randIndex].toLowerCase() && attempts < 5) {
+                        randIndex = Math.floor(Math.random() * mutArr.length);
+                        attempts++;
+                    }
+                }
+
+                arr[i] = mutArr[randIndex];
+                mutArr.splice(randIndex, 1);
+            }
+
+            for (let i = 0; i < arr.length; i++) {
+                if (i > 0) {
+                    if ([".", "?", "!"].includes(arr[i - 1][arr[i - 1].length - 1])) {
+                        arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1);
+                    } else {
+                        arr[i] = arr[i].toLowerCase();
+                    }
+                } else {
+                    arr[i] = arr[i][0].toUpperCase() + arr[i].slice(1);
+                }
+
+                if (i == arr.length - 1) {
+                    arr[i] = arr[i] + ".";
+                }
+            }
+
+            return arr.join(" ");
+        }
+
+        fetch("https://api.quotable.io/random").then((v) => v.json()).then((json) => {
+            document.getElementById("teach-man-fish").innerHTML = `"${getTeachManFish(json.content)}"`;
+            document.getElementById("teach-man-author").innerHTML = `- ${json.author}, 2022`;
+
+        });
+    </script>
+</body>
+
+</html>
