@@ -15,7 +15,8 @@
             margin: 0;
         }
 
-        body, html {
+        body,
+        html {
             overflow: hidden;
         }
 
@@ -66,7 +67,7 @@
         function getTeachManFish(original) {
             const arr = original.split(" ");
             const mutArr = original.split(" ");
-            
+
             for (let i = 0; i < arr.length; i++) {
                 let randIndex = Math.floor(Math.random() * mutArr.length);
 
@@ -108,9 +109,17 @@
             return arr.join(" ");
         }
 
-        fetch("https://api.quotable.io/random").then((v) => v.json()).then((json) => {
-            document.getElementById("teach-man-fish").innerHTML = `"${getTeachManFish(json.content)}"`;
-            document.getElementById("teach-man-author").innerHTML = `- ${json.author}, ${Math.floor(Math.random() * (2022 - 867 + 1) + 867)} A.D.`;
+        function update() {
+            fetch("https://api.quotable.io/random").then((v) => v.json()).then((json) => {
+                document.getElementById("teach-man-fish").innerHTML = `"${getTeachManFish(json.content)}"`;
+                document.getElementById("teach-man-author").innerHTML = `- ${json.author}, ${Math.floor(Math.random() * (2022 - 867 + 1) + 867)} A.D.`;
+            });
+        }
+
+        update();
+
+        document.getElementsByClassName("main")[0].addEventListener("click", () => {
+            update();
         });
     </script>
 </body>
