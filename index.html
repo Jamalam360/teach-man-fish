@@ -15,6 +15,10 @@
             margin: 0;
         }
 
+        body, html {
+            overflow: hidden;
+        }
+
         .main {
             height: 90vh;
             width: 90vw;
@@ -93,8 +97,7 @@
 
         fetch("https://api.quotable.io/random").then((v) => v.json()).then((json) => {
             document.getElementById("teach-man-fish").innerHTML = `"${getTeachManFish(json.content)}"`;
-            document.getElementById("teach-man-author").innerHTML = `- ${json.author}, 2022`;
-
+            document.getElementById("teach-man-author").innerHTML = `- ${json.author}, ${Math.floor(Math.random() * (2022 - 867 + 1) + 867)} A.D.`;
         });
     </script>
 </body>
