@@ -63,6 +63,7 @@
         <h1 id="teach-man-fish"></h1>
         <p id="teach-man-author"></p>
     </div>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script defer>
         function getTeachManFish(original) {
             const arr = original.split(" ");
@@ -127,8 +128,15 @@
         document.getElementsByClassName("main")[0].addEventListener("click", () => {
             update();
         });
+
+        document.getElementsByClassName("main")[0].addEventListener("dblclick", () => {
+            html2canvas(document.getElementsByClassName("main")[0]).then((canvas) => {
+                canvas.toBlob((blob) => navigator.clipboard.write([new ClipboardItem({ "image/png": blob})]));
+                alert("Copied image to clipboard");
+            });
+        });
     </script>
-    <script data-goatcounter="https://teachmanfish.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script data-goatcounter="https://teachmanfish.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 
 </html>
