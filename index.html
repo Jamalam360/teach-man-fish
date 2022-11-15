@@ -66,6 +66,8 @@
     </div>
     <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script defer>
+        let loading = false;
+
         function getTeachManFish(original) {
             const arr = original.split(" ");
             const mutArr = original.split(" ");
@@ -115,16 +117,20 @@
         }
 
         function update() {
+            loading = true;
             fetch("https://api.quotable.io/random").then((v) => v.json()).then((json) => {
                 document.getElementById("teach-man-fish").innerHTML = `"${getTeachManFish(json.content)}"`;
                 document.getElementById("teach-man-author").innerHTML = `- ${json.author}, ${Math.floor(Math.random() * (2022 - 867 + 1) + 867)} A.D.`;
+                loading = false;
             });
         }
 
         update();
 
         document.getElementsByClassName("main")[0].addEventListener("click", () => {
-            update();
+            if (!loading) {
+                update();
+            }
         });
 
         document.getElementsByClassName("main")[0].addEventListener("dblclick", () => {
