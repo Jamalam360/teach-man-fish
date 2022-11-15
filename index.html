@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon.ico">
     <title>Teach Man Fish</title>
 
     <style>
@@ -97,7 +98,9 @@
                 }
 
                 if (i == arr.length - 1) {
-                    arr[i] = arr[i] + ".";
+                    if (!(arr[i].includes(",") || arr[i].includes(".") || arr[i].includes("?") || arr[i].includes("!") || arr[i].includes(";") || arr[i].includes(":"))) {
+                        arr[i] = arr[i] + ".";
+                    }
                 }
 
                 if (arr[i] == "i") {
@@ -108,11 +111,6 @@
             }
 
             let res = arr.join(" ");
-
-            if (res.endsWith("..")) {
-                res = res.slice(0, -1);
-            }
-
             return res;
         }
 
@@ -131,12 +129,13 @@
 
         document.getElementsByClassName("main")[0].addEventListener("dblclick", () => {
             html2canvas(document.getElementsByClassName("main")[0]).then((canvas) => {
-                canvas.toBlob((blob) => navigator.clipboard.write([new ClipboardItem({ "image/png": blob})]));
+                canvas.toBlob((blob) => navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]));
                 alert("Copied image to clipboard");
             });
         });
     </script>
-    <script data-goatcounter="https://teachmanfish.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    <script data-goatcounter="https://teachmanfish.goatcounter.com/count" async
+        src="https://gc.zgo.at/count.js"></script>
 </body>
 
 </html>
