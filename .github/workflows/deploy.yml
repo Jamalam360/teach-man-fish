@@ -1,0 +1,15 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-next:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Send API Request
+        run: |
+          curl --silent --show-error --fail -X POST -H "Authorization: Bearer ${{ secrets.API_DEPLOY_KEY }}" https://orion.jamalam.tech/deploy/teach-man-fish
