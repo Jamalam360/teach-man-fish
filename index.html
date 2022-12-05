@@ -122,6 +122,8 @@
                 document.getElementById("teach-man-fish").innerHTML = `"${getTeachManFish(json.content)}"`;
                 document.getElementById("teach-man-author").innerHTML = `- ${json.author}, ${Math.floor(Math.random() * (2022 - 867 + 1) + 867)} A.D.`;
                 loading = false;
+            }).catch((e) => {
+                document.getElementsByClassName("main")[0].innerHTML = '<img src="https://http.cat/500" alt="500 Internal Server Error" style="width: 100%; height: 100%; object-fit: contain;">';
             });
         }
 
