@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy-next:
+  deploy:
     runs-on: ubuntu-22.04
 
     steps:
