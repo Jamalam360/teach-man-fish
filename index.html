@@ -134,10 +134,8 @@
         let timer = null;
         document.addEventListener("mousedown", () => {
             time = Date.now();
-            alert("mousedown")
             timer = setTimeout(() => {
                 html2canvas(document.getElementsByClassName("main")[0]).then((canvas) => {
-                    alert("html2canvas")
                     canvas.toBlob((blob) => navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]));
                     canvas.toBlob((blob) => alert(blob));
                     alert("Copied image to clipboard");
@@ -146,7 +144,6 @@
         });
         document.addEventListener("mouseup", () => {
             time = Date.now() - time;
-            alert("mouseup")
             if (time < 1000) {
                 clearTimeout(timer);
 
