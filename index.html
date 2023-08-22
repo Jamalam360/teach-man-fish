@@ -141,7 +141,9 @@
 
         let time = 0;
         let timer = null;
-        document.addEventListener("mousedown", () => {
+
+        function startTimer() {
+            clearTimer();
             time = Date.now();
             timer = setTimeout(() => {
                 html2canvas(document.getElementsByClassName("screenshot")[0]).then((canvas) => {
@@ -149,8 +151,9 @@
                     alert("Copied image to clipboard");
                 });
             }, 1000);
-        });
-        document.addEventListener("mouseup", () => {
+        }
+
+        function clearTimer() {
             time = Date.now() - time;
             if (time < 1000) {
                 clearTimeout(timer);
@@ -159,7 +162,12 @@
                     update();
                 }
             }
-        });
+        }
+
+        document.addEventListener("mousedown", startTimer);
+        document.addEventListener("touchstart", startTimer);
+        document.addEventListener("mouseup", clearTimer);
+        document.addEventListener("touchend", clearTimer);
     </script>
     <script data-goatcounter="https://teachmanfish.goatcounter.com/count" async
         src="https://gc.zgo.at/count.js"></script>
